@@ -1,0 +1,2789 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Bizimana Fabrice — ICT and Multimedia student specializing in Networking and Internet Technology."
+    >
+
+    <title>Bizimana.com</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #07080c;
+            color: #f5f5f5;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: .3s;
+        }
+
+        body.light {
+            background: #f5f5f2;
+            color: #111;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+            cursor: pointer;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        :root {
+            --bg: #07080c;
+            --surface: #101218;
+            --surface-2: #171a22;
+            --text: #f5f5f5;
+            --muted: #9499a8;
+            --border: rgba(255,255,255,.1);
+
+            --purple: #8b5cf6;
+            --cyan: #22d3ee;
+            --green: #22c55e;
+
+            --max: 1200px;
+            --radius: 24px;
+        }
+
+        body.light {
+            --bg: #f5f5f2;
+            --surface: #ffffff;
+            --surface-2: #e9e9e5;
+            --text: #111111;
+            --muted: #62646b;
+            --border: rgba(0,0,0,.1);
+        }
+
+        .container {
+            width: min(92%, var(--max));
+            margin: auto;
+        }
+
+        .section {
+            padding: 120px 0;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--cyan);
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .section-label::before {
+            content: "";
+            width: 30px;
+            height: 1px;
+            background: currentColor;
+        }
+
+        .section-title {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(2.4rem, 6vw, 5rem);
+            line-height: 1;
+            letter-spacing: -.05em;
+            max-width: 900px;
+        }
+
+        .section-description {
+            color: var(--muted);
+            max-width: 650px;
+            margin-top: 25px;
+        }
+
+        /* =====================================================
+           BACKGROUND
+        ===================================================== */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .glow {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            filter: blur(130px);
+            opacity: .12;
+        }
+
+        .glow-one {
+            background: var(--purple);
+            top: -150px;
+            left: -150px;
+        }
+
+        .glow-two {
+            background: var(--cyan);
+            right: -200px;
+            top: 40%;
+        }
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: .3s;
+        }
+
+        header.scrolled {
+            background: rgba(7,8,12,.82);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar {
+            width: min(92%, var(--max));
+            height: 80px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: "Space Grotesk";
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: -.05em;
+        }
+
+        .logo span {
+            color: var(--cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: .9rem;
+            transition: .3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+        }
+
+        .menu-btn {
+            display: none;
+        }
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 8px 15px;
+            margin-bottom: 28px;
+
+            border: 1px solid var(--border);
+            border-radius: 100px;
+
+            color: var(--muted);
+            background: rgba(255,255,255,.02);
+        }
+
+        .availability-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 15px var(--green);
+        }
+
+        .hero h1 {
+            font-family: "Space Grotesk";
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            line-height: .9;
+            letter-spacing: -.075em;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(
+                90deg,
+                var(--purple),
+                var(--cyan)
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            color: var(--muted);
+            font-size: 1.1rem;
+            margin: 30px 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            padding: 14px 22px;
+            border-radius: 100px;
+            font-weight: 700;
+
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            background: var(--surface);
+            transform: translateY(-4px);
+        }
+
+        /* HERO IMAGE */
+
+        .hero-image-wrapper {
+            position: relative;
+            width: min(100%, 450px);
+            margin-left: auto;
+        }
+
+        .hero-image-wrapper::before {
+            content: "";
+            position: absolute;
+            inset: -20px;
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            transform: rotate(6deg);
+        }
+
+        .hero-image {
+            height: 600px;
+            object-fit: cover;
+            border-radius: 32px;
+            position: relative;
+        }
+
+        .floating-card {
+            position: absolute;
+            padding: 16px 20px;
+            border-radius: 18px;
+
+            background: rgba(15,17,24,.88);
+            backdrop-filter: blur(20px);
+
+            border: 1px solid var(--border);
+        }
+
+        .floating-card small {
+            display: block;
+            color: var(--muted);
+        }
+
+        .floating-card strong {
+            font-size: 1rem;
+        }
+
+        .card-one {
+            top: 30px;
+            left: -60px;
+        }
+
+        .card-two {
+            bottom: 30px;
+            right: -50px;
+        }
+
+        /* =====================================================
+           MARQUEE
+        ===================================================== */
+
+        .marquee {
+            overflow: hidden;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: inline-flex;
+            animation: marquee 25s linear infinite;
+            padding: 25px 0;
+        }
+
+        .marquee span {
+            margin: 0 30px;
+            font-family: "Space Grotesk";
+            font-size: 2rem;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        @keyframes marquee {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* =====================================================
+           ABOUT
+        ===================================================== */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            height: 560px;
+            object-fit: cover;
+            border-radius: var(--radius);
+        }
+
+        .about-content h3 {
+            font-family: "Space Grotesk";
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .info-list {
+            margin-top: 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-row span:first-child {
+            color: var(--muted);
+        }
+
+        .info-row span:last-child {
+            text-align: right;
+            font-weight: 600;
+        }
+
+        /* =====================================================
+           STATS
+        ===================================================== */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .stat {
+            border-top: 1px solid var(--border);
+            padding-top: 18px;
+        }
+
+        .stat-number {
+            font-family: "Space Grotesk";
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .stat p {
+            color: var(--muted);
+            font-size: .85rem;
+        }
+
+        /* =====================================================
+           SKILLS
+        ===================================================== */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 18px;
+            margin-top: 60px;
+        }
+
+        .skill-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 30px;
+            transition: .35s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139,92,246,.5);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+
+        .skill-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .skill-card p {
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        .skill-bar {
+            height: 5px;
+            margin-top: 20px;
+            background: var(--surface-2);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            width: 0;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                var(--purple),
+                var(--cyan)
+            );
+            transition: 1.5s;
+        }
+
+        /* =====================================================
+           PROJECTS
+        ===================================================== */
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 40px 0;
+        }
+
+        .filter-btn {
+            padding: 10px 17px;
+            border-radius: 100px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--muted);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            color: var(--text);
+            border-color: var(--text);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 25px;
+        }
+
+        .project-card {
+            overflow: hidden;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: .4s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .project-image {
+            height: 360px;
+            object-fit: cover;
+            transition: .5s;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.04);
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-category {
+            color: var(--cyan);
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .project-info h3 {
+            font-family: "Space Grotesk";
+            font-size: 1.7rem;
+            margin: 8px 0;
+        }
+
+        .project-info p {
+            color: var(--muted);
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 18px;
+            font-weight: 700;
+        }
+
+        /* =====================================================
+           NETWORKING SPECIALIZATION
+        ===================================================== */
+
+        .network-section {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .network-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .network-card {
+            padding: 35px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg);
+        }
+
+        .network-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .network-card h3 {
+            font-family: "Space Grotesk";
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .network-card p {
+            color: var(--muted);
+        }
+
+        .technology-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            padding: 7px 12px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: .8rem;
+            color: var(--muted);
+        }
+
+        /* =====================================================
+           SERVICES
+        ===================================================== */
+
+        .services {
+            margin-top: 60px;
+            border-top: 1px solid var(--border);
+        }
+
+        .service {
+            display: grid;
+            grid-template-columns: 70px 1fr auto;
+            gap: 30px;
+            align-items: center;
+            padding: 35px 0;
+            border-bottom: 1px solid var(--border);
+            transition: .3s;
+        }
+
+        .service:hover {
+            padding-left: 15px;
+        }
+
+        .service-number {
+            color: var(--muted);
+        }
+
+        .service h3 {
+            font-family: "Space Grotesk";
+            font-size: 2rem;
+        }
+
+        .service p {
+            color: var(--muted);
+            max-width: 650px;
+        }
+
+        .service-arrow {
+            font-size: 2rem;
+        }
+
+        /* =====================================================
+           ARTWORK
+        ===================================================== */
+
+        .art-grid {
+            columns: 3 250px;
+            column-gap: 20px;
+            margin-top: 60px;
+        }
+
+        .art-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            break-inside: avoid;
+            cursor: pointer;
+        }
+
+        .art-item img {
+            transition: .5s;
+        }
+
+        .art-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .art-overlay {
+            position: absolute;
+            inset: auto 0 0;
+            padding: 25px;
+            background: linear-gradient(
+                transparent,
+                rgba(0,0,0,.85)
+            );
+            opacity: 0;
+            transition: .3s;
+        }
+
+        .art-item:hover .art-overlay {
+            opacity: 1;
+        }
+
+        /* =====================================================
+           CONTACT
+        ===================================================== */
+
+        .contact-box {
+            margin-top: 60px;
+            padding: 60px;
+            border-radius: 35px;
+            border: 1px solid var(--border);
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(139,92,246,.16),
+                    transparent 35%
+                ),
+                var(--surface);
+        }
+
+        .contact-box h3 {
+            font-family: "Space Grotesk";
+            font-size: clamp(2.5rem,5vw,5rem);
+            line-height: 1;
+            max-width: 900px;
+        }
+
+        .contact-box p {
+            color: var(--muted);
+            max-width: 650px;
+            margin: 25px 0;
+        }
+
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 12px;
+            margin: 35px 0;
+        }
+
+        .contact-item {
+            padding: 18px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+
+        .contact-item small {
+            display: block;
+            color: var(--muted);
+            margin-bottom: 5px;
+        }
+
+        .contact-item a {
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        .socials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .social {
+            padding: 10px 16px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--muted);
+            transition: .3s;
+        }
+
+        .social:hover {
+            color: var(--text);
+            border-color: var(--text);
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 35px 0;
+            color: var(--muted);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* =====================================================
+           ANIMATION
+        ===================================================== */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: .8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =====================================================
+           LIGHTBOX
+        ===================================================== */
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(0,0,0,.92);
+            padding: 30px;
+        }
+
+        .lightbox.show {
+            display: flex;
+        }
+
+        .lightbox img {
+            width: auto;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 15px;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+
+            background: transparent;
+            color: white;
+
+            font-size: 2.5rem;
+            border: none;
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 950px) {
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+
+                width: min(320px,85%);
+                height: calc(100vh - 80px);
+
+                background: var(--surface);
+
+                flex-direction: column;
+                padding: 40px;
+
+                transition: .4s;
+
+                border-left: 1px solid var(--border);
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero-grid,
+            .about-grid,
+            .network-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image-wrapper {
+                margin: auto;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+        }
+
+        @media(max-width: 650px) {
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero-image {
+                height: 450px;
+            }
+
+            .floating-card {
+                display: none;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-details {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-box {
+                padding: 35px 25px;
+            }
+
+            .service {
+                grid-template-columns: 40px 1fr;
+            }
+
+            .service-arrow {
+                display: none;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+
+    <div class="background">
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+    </div>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header id="header">
+
+        <div class="navbar">
+
+            <a href="#home" class="logo">
+                FABRICE<span>.</span>
+            </a>
+
+            <nav>
+                <ul class="nav-links" id="navLinks">
+
+                    <li>
+                        <a href="#home" class="active">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#about">
+                            About
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#skills">
+                            Skills
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#projects">
+                            Projects
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#networking">
+                            Networking
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#artwork">
+                            Artwork
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#contact">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+
+            <div class="nav-actions">
+
+                <button
+                    class="icon-btn"
+                    id="themeButton"
+                    aria-label="Change theme"
+                >
+                    ☾
+                </button>
+
+                <button
+                    class="icon-btn menu-btn"
+                    id="menuButton"
+                    aria-label="Open menu"
+                >
+                    ☰
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero section" id="home">
+
+            <div class="container hero-grid">
+
+                <div class="reveal">
+
+                    <div class="availability">
+
+                        <span class="availability-dot"></span>
+
+                        ICT & Networking Student
+
+                    </div>
+
+
+                    <h1>
+
+                        Hi, I'm
+
+                        <span>
+                            Fabrice.
+                        </span>
+
+                        <br>
+
+                        Developer.
+
+                        <br>
+
+                        Network
+                        <span>
+                            Enthusiast.
+                        </span>
+
+                    </h1>
+
+
+                    <p class="hero-description">
+
+                        I'm Bizimana Fabrice, an ICT and Multimedia
+                        student specializing in Networking and Internet
+                        Technology. I combine technology, programming,
+                        networking and creativity to build meaningful
+                        digital experiences.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="#projects"
+                            class="btn btn-primary"
+                        >
+                            Explore My Work →
+                        </a>
+
+                        <a
+                            href="#contact"
+                            class="btn btn-outline"
+                        >
+                            Contact Me
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-image-wrapper reveal">
+
+                    <img
+                        class="hero-image"
+                        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=85"
+                        alt="Technology workspace"
+                    >
+
+
+                    <div class="floating-card card-one">
+
+                        <small>
+                            Department
+                        </small>
+
+                        <strong>
+                            ICT & Multimedia
+                        </strong>
+
+                    </div>
+
+
+                    <div class="floating-card card-two">
+
+                        <small>
+                            Specialization
+                        </small>
+
+                        <strong>
+                            Networking & Internet
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MARQUEE
+        ================================================== -->
+
+        <div class="marquee">
+
+            <div class="marquee-track">
+
+                <span>NETWORKING</span>
+                <span>INTERNET TECHNOLOGY</span>
+                <span>WEB DEVELOPMENT</span>
+                <span>JAVASCRIPT</span>
+                <span>CYBER TECHNOLOGY</span>
+                <span>CREATIVE DESIGN</span>
+
+                <span>NETWORKING</span>
+                <span>INTERNET TECHNOLOGY</span>
+                <span>WEB DEVELOPMENT</span>
+                <span>JAVASCRIPT</span>
+                <span>CYBER TECHNOLOGY</span>
+                <span>CREATIVE DESIGN</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             ABOUT
+        ================================================== -->
+
+        <section class="section" id="about">
+
+            <div class="container">
+
+                <div class="about-grid">
+
+                    <div class="reveal">
+
+                        <img
+                            class="about-image"
+                            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=85"
+                            alt="Technology student working"
+                        >
+
+                    </div>
+
+
+                    <div class="about-content reveal">
+
+                        <span class="section-label">
+                            About Me
+                        </span>
+
+
+                        <h2 class="section-title">
+
+                            Technology,
+                            networking &
+                            creativity.
+
+                        </h2>
+
+
+                        <p>
+
+                            My name is <strong>Bizimana Fabrice</strong>.
+                            I am passionate about technology and digital
+                            innovation, with a particular interest in
+                            computer networking and internet technologies.
+
+                        </p>
+
+
+                        <p>
+
+                            I enjoy learning how systems communicate,
+                            creating websites, exploring programming,
+                            solving technical problems and expressing
+                            creativity through digital and visual work.
+
+                        </p>
+
+
+                        <div class="info-list">
+
+                            <div class="info-row">
+
+                                <span>
+                                    Full Name
+                                </span>
+
+                                <span>
+                                    Bizimana Fabrice
+                                </span>
+
+                            </div>
+
+
+                            <div class="info-row">
+
+                                <span>
+                                    Department
+                                </span>
+
+                                <span>
+                                    ICT & Multimedia
+                                </span>
+
+                            </div>
+
+
+                            <div class="info-row">
+
+                                <span>
+                                    Specialization
+                                </span>
+
+                                <span>
+                                    Networking & Internet Technology
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stats">
+
+                            <div class="stat">
+
+                                <div
+                                    class="stat-number"
+                                    data-target="10"
+                                >
+                                    0+
+                                </div>
+
+                                <p>
+                                    Technologies
+                                </p>
+
+                            </div>
+
+
+                            <div class="stat">
+
+                                <div
+                                    class="stat-number"
+                                    data-target="15"
+                                >
+                                    0+
+                                </div>
+
+                                <p>
+                                    Projects
+                                </p>
+
+                            </div>
+
+
+                            <div class="stat">
+
+                                <div
+                                    class="stat-number"
+                                    data-target="3"
+                                >
+                                    0+
+                                </div>
+
+                                <p>
+                                    Areas of Focus
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SKILLS
+        ================================================== -->
+
+        <section class="section" id="skills">
+
+            <div class="container">
+
+                <span class="section-label reveal">
+                    Technical Skills
+                </span>
+
+
+                <h2 class="section-title reveal">
+
+                    Technologies I
+                    work with.
+
+                </h2>
+
+
+                <p class="section-description reveal">
+
+                    My interests cover web development, programming,
+                    computer networking and creative digital technology.
+
+                </p>
+
+
+                <div class="skills-grid">
+
+
+                    <article class="skill-card reveal">
+
+                        <div class="skill-icon">
+                            🌐
+                        </div>
+
+                        <h3>
+                            Networking
+                        </h3>
+
+                        <p>
+                            Computer networks, connectivity,
+                            infrastructure and communication.
+                        </p>
+
+                        <div class="skill-bar">
+
+                            <div
+                                class="skill-progress"
+                                data-width="90%"
+                            ></div>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="skill-card reveal">
+
+                        <div class="skill-icon">
+                            💻
+                        </div>
+
+                        <h3>
+                            HTML & CSS
+                        </h3>
+
+                        <p>
+                            Responsive and modern website interfaces.
+                        </p>
+
+                        <div class="skill-bar">
+
+                            <div
+                                class="skill-progress"
+                                data-width="95%"
+                            ></div>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="skill-card reveal">
+
+                        <div class="skill-icon">
+                            ⚡
+                        </div>
+
+                        <h3>
+                            JavaScript
+                        </h3>
+
+                        <p>
+                            Interactive and dynamic web applications.
+                        </p>
+
+                        <div class="skill-bar">
+
+                            <div
+                                class="skill-progress"
+                                data-width="85%"
+                            ></div>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="skill-card reveal">
+
+                        <div class="skill-icon">
+                            🎨
+                        </div>
+
+                        <h3>
+                            Creative Design
+                        </h3>
+
+                        <p>
+                            Digital art, visual concepts and creative
+                            problem solving.
+                        </p>
+
+                        <div class="skill-bar">
+
+                            <div
+                                class="skill-progress"
+                                data-width="88%"
+                            ></div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PROJECTS
+        ================================================== -->
+
+        <section class="section" id="projects">
+
+            <div class="container">
+
+                <span class="section-label reveal">
+                    Selected Projects
+                </span>
+
+
+                <h2 class="section-title reveal">
+
+                    Things I've
+                    built.
+
+                </h2>
+
+
+                <div class="filters reveal">
+
+                    <button
+                        class="filter-btn active"
+                        data-filter="all"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="web"
+                    >
+                        Web
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="network"
+                    >
+                        Networking
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-filter="creative"
+                    >
+                        Creative
+                    </button>
+
+                </div>
+
+
+                <div class="projects-grid">
+
+
+                    <article
+                        class="project-card reveal"
+                        data-category="web"
+                    >
+
+                        <img
+                            class="project-image"
+                            src="https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=85"
+                            alt="Web development project"
+                        >
+
+                        <div class="project-info">
+
+                            <span class="project-category">
+                                Web Development
+                            </span>
+
+                            <h3>
+                                Modern Web Platform
+                            </h3>
+
+                            <p>
+                                A responsive web experience built around
+                                usability, performance and modern design.
+                            </p>
+
+                            <a href="#" class="project-link">
+                                View Project →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article
+                        class="project-card reveal"
+                        data-category="network"
+                    >
+
+                        <img
+                            class="project-image"
+                            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=85"
+                            alt="Network servers"
+                        >
+
+                        <div class="project-info">
+
+                            <span class="project-category">
+                                Networking
+                            </span>
+
+                            <h3>
+                                Network Infrastructure
+                            </h3>
+
+                            <p>
+                                A networking project focused on connectivity,
+                                infrastructure and internet communication.
+                            </p>
+
+                            <a href="#networking" class="project-link">
+                                Explore →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article
+                        class="project-card reveal"
+                        data-category="creative"
+                    >
+
+                        <img
+                            class="project-image"
+                            src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=1200&q=85"
+                            alt="Creative artwork"
+                        >
+
+                        <div class="project-info">
+
+                            <span class="project-category">
+                                Creative
+                            </span>
+
+                            <h3>
+                                Digital Artwork
+                            </h3>
+
+                            <p>
+                                A creative project combining technology,
+                                visual design and artistic expression.
+                            </p>
+
+                            <a href="#artwork" class="project-link">
+                                View Artwork →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article
+                        class="project-card reveal"
+                        data-category="web"
+                    >
+
+                        <img
+                            class="project-image"
+                            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85"
+                            alt="Web dashboard"
+                        >
+
+                        <div class="project-info">
+
+                            <span class="project-category">
+                                Web Application
+                            </span>
+
+                            <h3>
+                                Technology Dashboard
+                            </h3>
+
+                            <p>
+                                An interactive dashboard concept for
+                                visualizing information and system data.
+                            </p>
+
+                            <a href="#" class="project-link">
+                                View Project →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             NETWORKING
+        ================================================== -->
+
+        <section
+            class="section network-section"
+            id="networking"
+        >
+
+            <div class="container">
+
+                <span class="section-label reveal">
+                    My Specialization
+                </span>
+
+
+                <h2 class="section-title reveal">
+
+                    Networking &
+                    Internet Technology.
+
+                </h2>
+
+
+                <p class="section-description reveal">
+
+                    My studies and interests focus on how computers,
+                    devices and systems communicate through networks
+                    and internet technologies.
+
+                </p>
+
+
+                <div class="network-grid">
+
+
+                    <article class="network-card reveal">
+
+                        <div class="network-card-icon">
+                            🌐
+                        </div>
+
+                        <h3>
+                            Computer Networks
+                        </h3>
+
+                        <p>
+                            Understanding how devices communicate,
+                            share resources and connect across networks.
+                        </p>
+
+                        <div class="technology-tags">
+
+                            <span class="tag">
+                                LAN
+                            </span>
+
+                            <span class="tag">
+                                WAN
+                            </span>
+
+                            <span class="tag">
+                                TCP/IP
+                            </span>
+
+                            <span class="tag">
+                                Routing
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="network-card reveal">
+
+                        <div class="network-card-icon">
+                            🖥️
+                        </div>
+
+                        <h3>
+                            Internet Technology
+                        </h3>
+
+                        <p>
+                            Exploring web technologies, internet
+                            communication and digital infrastructure.
+                        </p>
+
+                        <div class="technology-tags">
+
+                            <span class="tag">
+                                HTTP
+                            </span>
+
+                            <span class="tag">
+                                DNS
+                            </span>
+
+                            <span class="tag">
+                                Web
+                            </span>
+
+                            <span class="tag">
+                                Servers
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="network-card reveal">
+
+                        <div class="network-card-icon">
+                            🔐
+                        </div>
+
+                        <h3>
+                            Network Security
+                        </h3>
+
+                        <p>
+                            Learning fundamental concepts of protecting
+                            systems, networks and digital communication.
+                        </p>
+
+                        <div class="technology-tags">
+
+                            <span class="tag">
+                                Security
+                            </span>
+
+                            <span class="tag">
+                                Authentication
+                            </span>
+
+                            <span class="tag">
+                                Privacy
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="network-card reveal">
+
+                        <div class="network-card-icon">
+                            ⚙️
+                        </div>
+
+                        <h3>
+                            Technical Problem Solving
+                        </h3>
+
+                        <p>
+                            Diagnosing technical problems and developing
+                            practical solutions through logical thinking.
+                        </p>
+
+                        <div class="technology-tags">
+
+                            <span class="tag">
+                                Troubleshooting
+                            </span>
+
+                            <span class="tag">
+                                Systems
+                            </span>
+
+                            <span class="tag">
+                                IT Support
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SERVICES
+        ================================================== -->
+
+        <section class="section" id="services">
+
+            <div class="container">
+
+                <span class="section-label reveal">
+                    What I Do
+                </span>
+
+
+                <h2 class="section-title reveal">
+
+                    Technology meets
+                    creativity.
+
+                </h2>
+
+
+                <div class="services">
+
+
+                    <div class="service reveal">
+
+                        <span class="service-number">
+                            01
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Web Development
+                            </h3>
+
+                            <p>
+                                Creating responsive and interactive
+                                websites using HTML, CSS and JavaScript.
+                            </p>
+
+                        </div>
+
+                        <span class="service-arrow">
+                            ↗
+                        </span>
+
+                    </div>
+
+
+                    <div class="service reveal">
+
+                        <span class="service-number">
+                            02
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Networking
+                            </h3>
+
+                            <p>
+                                Exploring computer networking,
+                                connectivity and internet technologies.
+                            </p>
+
+                        </div>
+
+                        <span class="service-arrow">
+                            ↗
+                        </span>
+
+                    </div>
+
+
+                    <div class="service reveal">
+
+                        <span class="service-number">
+                            03
+                        </span>
+
+                        <div>
+
+                            <h3>
+                                Creative Design
+                            </h3>
+
+                            <p>
+                                Combining visual creativity with
+                                technology to create engaging digital
+                                experiences.
+                            </p>
+
+                        </div>
+
+                        <span class="service-arrow">
+                            ↗
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ARTWORK
+        ================================================== -->
+
+        <section class="section" id="artwork">
+
+            <div class="container">
+
+                <span class="section-label reveal">
+                    Creative Side
+                </span>
+
+
+                <h2 class="section-title reveal">
+
+                    Beyond
+                    technology.
+
+                </h2>
+
+
+                <p class="section-description reveal">
+
+                    Creativity is another part of my identity.
+                    I enjoy exploring drawing, visual art and creative
+                    ideas alongside technology.
+
+                </p>
+
+
+                <div class="art-grid">
+
+
+                    <div class="art-item reveal">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=85"
+                            alt="Drawing tools"
+                        >
+
+                        <div class="art-overlay">
+                            Creative Process
+                        </div>
+
+                    </div>
+
+
+                    <div class="art-item reveal">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=800&q=85"
+                            alt="Colorful artwork"
+                        >
+
+                        <div class="art-overlay">
+                            Color & Imagination
+                        </div>
+
+                    </div>
+
+
+                    <div class="art-item reveal">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=800&q=85"
+                            alt="Painting"
+                        >
+
+                        <div class="art-overlay">
+                            Artistic Inspiration
+                        </div>
+
+                    </div>
+
+
+                    <div class="art-item reveal">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&w=800&q=85"
+                            alt="Modern artwork"
+                        >
+
+                        <div class="art-overlay">
+                            Visual Exploration
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CONTACT
+        ================================================== -->
+
+        <section class="section" id="contact">
+
+            <div class="container">
+
+                <div class="contact-box reveal">
+
+                    <span class="section-label">
+                        Contact
+                    </span>
+
+
+                    <h3>
+
+                        Let's connect
+                        and build something
+                        great.
+
+                    </h3>
+
+
+                    <p>
+
+                        Interested in technology, networking,
+                        web development or creative collaboration?
+                        Feel free to reach out.
+
+                    </p>
+
+
+                    <div class="contact-details">
+
+
+                        <div class="contact-item">
+
+                            <small>
+                                Email
+                            </small>
+
+                            <a
+                                href="mailto:bizimanafabrice096@gmail.com"
+                            >
+                                bizimanafabrice096@gmail.com
+                            </a>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <small>
+                                WhatsApp
+                            </small>
+
+                            <a
+                                href="https://wa.me/250794513444"
+                                target="_blank"
+                            >
+                                0794513444
+                            </a>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <small>
+                                WhatsApp / Phone
+                            </small>
+
+                            <a
+                                href="https://wa.me/250728715321"
+                                target="_blank"
+                            >
+                                0728715321
+                            </a>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <small>
+                                Instagram
+                            </small>
+
+                            <a
+                                href="https://instagram.com/bizimana_fabrice"
+                                target="_blank"
+                            >
+                                @bizimana_fabrice
+                            </a>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="socials">
+
+                        <a
+                            class="social"
+                            href="mailto:bizimanafabrice096@gnmail.com"
+                        >
+                            📧 Email
+                        </a>
+
+
+                        <a
+                            class="social"
+                            href="https://instagram.com/bizimana_fabrice"
+                            target="_blank"
+                        >
+                            📸 Instagram
+                        </a>
+
+
+                        <a
+                            class="social"
+                            href="#"
+                        >
+                            💼 LinkedIn — Bizimana IT
+                        </a>
+
+
+                        <a
+                            class="social"
+                            href="https://t.me/0728715321"
+                            target="_blank"
+                        >
+                            ✈️ Telegram
+                        </a>
+
+
+                        <a
+                            class="social"
+                            href="https://wa.me/250794513444"
+                            target="_blank"
+                        >
+                            💬 WhatsApp
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div class="container footer-content">
+
+            <p>
+                © <span id="year"></span>
+                Bizimana Fabrice.
+                All rights reserved.
+            </p>
+
+            <p>
+                ICT & Multimedia • Networking & Internet Technology
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =====================================================
+         LIGHTBOX
+    ====================================================== -->
+
+    <div
+        class="lightbox"
+        id="lightbox"
+    >
+
+        <button
+            class="close-lightbox"
+            id="closeLightbox"
+        >
+            ×
+        </button>
+
+        <img
+            id="lightboxImage"
+            src=""
+            alt="Artwork preview"
+        >
+
+    </div>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        const header =
+            document.getElementById("header");
+
+        window.addEventListener("scroll", () => {
+
+            if (window.scrollY > 40) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+
+        });
+
+
+        /* =====================================================
+           MOBILE MENU
+        ===================================================== */
+
+        const menuButton =
+            document.getElementById("menuButton");
+
+        const navLinks =
+            document.getElementById("navLinks");
+
+        menuButton.addEventListener("click", () => {
+
+            navLinks.classList.toggle("open");
+
+            menuButton.textContent =
+                navLinks.classList.contains("open")
+                    ? "×"
+                    : "☰";
+
+        });
+
+
+        document.querySelectorAll(".nav-links a")
+            .forEach(link => {
+
+                link.addEventListener("click", () => {
+
+                    navLinks.classList.remove("open");
+
+                    menuButton.textContent = "☰";
+
+                });
+
+            });
+
+
+        /* =====================================================
+           DARK / LIGHT MODE
+        ===================================================== */
+
+        const themeButton =
+            document.getElementById("themeButton");
+
+        const savedTheme =
+            localStorage.getItem("fabrice-theme");
+
+        if (savedTheme === "light") {
+
+            document.body.classList.add("light");
+
+            themeButton.textContent = "☀";
+
+        }
+
+
+        themeButton.addEventListener("click", () => {
+
+            document.body.classList.toggle("light");
+
+            const light =
+                document.body.classList.contains("light");
+
+            themeButton.textContent =
+                light ? "☀" : "☾";
+
+            localStorage.setItem(
+                "fabrice-theme",
+                light ? "light" : "dark"
+            );
+
+        });
+
+
+        /* =====================================================
+           SCROLL REVEAL
+        ===================================================== */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+        const revealObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("show");
+
+                            revealObserver.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: .12
+                }
+            );
+
+
+        revealElements.forEach(element => {
+
+            revealObserver.observe(element);
+
+        });
+
+
+        /* =====================================================
+           SKILL BARS
+        ===================================================== */
+
+        const skillProgress =
+            document.querySelectorAll(".skill-progress");
+
+        const skillObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (!entry.isIntersecting)
+                            return;
+
+                        entry.target.style.width =
+                            entry.target.dataset.width;
+
+                        skillObserver.unobserve(
+                            entry.target
+                        );
+
+                    });
+
+                },
+                {
+                    threshold: .5
+                }
+            );
+
+
+        skillProgress.forEach(skill => {
+
+            skillObserver.observe(skill);
+
+        });
+
+
+        /* =====================================================
+           STATISTICS
+        ===================================================== */
+
+        const statNumbers =
+            document.querySelectorAll(".stat-number");
+
+        const statsObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (!entry.isIntersecting)
+                            return;
+
+                        const element =
+                            entry.target;
+
+                        const target =
+                            Number(element.dataset.target);
+
+                        let current = 0;
+
+                        const increment =
+                            Math.max(
+                                1,
+                                Math.ceil(target / 40)
+                            );
+
+                        const counter =
+                            setInterval(() => {
+
+                                current += increment;
+
+                                if (current >= target) {
+
+                                    current = target;
+
+                                    clearInterval(counter);
+
+                                }
+
+                                element.textContent =
+                                    current + "+";
+
+                            }, 35);
+
+                        statsObserver.unobserve(element);
+
+                    });
+
+                },
+                {
+                    threshold: .7
+                }
+            );
+
+
+        statNumbers.forEach(number => {
+
+            statsObserver.observe(number);
+
+        });
+
+
+        /* =====================================================
+           PROJECT FILTER
+        ===================================================== */
+
+        const filterButtons =
+            document.querySelectorAll(".filter-btn");
+
+        const projectCards =
+            document.querySelectorAll(".project-card");
+
+
+        filterButtons.forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                filterButtons.forEach(btn => {
+
+                    btn.classList.remove("active");
+
+                });
+
+                button.classList.add("active");
+
+                const filter =
+                    button.dataset.filter;
+
+
+                projectCards.forEach(card => {
+
+                    const category =
+                        card.dataset.category;
+
+                    if (
+                        filter === "all" ||
+                        category === filter
+                    ) {
+
+                        card.style.display = "block";
+
+                    } else {
+
+                        card.style.display = "none";
+
+                    }
+
+                });
+
+            });
+
+        });
+
+
+        /* =====================================================
+           ARTWORK LIGHTBOX
+        ===================================================== */
+
+        const artItems =
+            document.querySelectorAll(".art-item");
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+        const lightboxImage =
+            document.getElementById("lightboxImage");
+
+        const closeLightbox =
+            document.getElementById("closeLightbox");
+
+
+        artItems.forEach(item => {
+
+            item.addEventListener("click", () => {
+
+                const image =
+                    item.querySelector("img");
+
+                lightboxImage.src =
+                    image.src;
+
+                lightboxImage.alt =
+                    image.alt;
+
+                lightbox.classList.add("show");
+
+            });
+
+        });
+
+
+        closeLightbox.addEventListener("click", () => {
+
+            lightbox.classList.remove("show");
+
+        });
+
+
+        lightbox.addEventListener("click", event => {
+
+            if (event.target === lightbox) {
+
+                lightbox.classList.remove("show");
+
+            }
+
+        });
+
+
+        document.addEventListener("keydown", event => {
+
+            if (event.key === "Escape") {
+
+                lightbox.classList.remove("show");
+
+            }
+
+        });
+
+
+        /* =====================================================
+           ACTIVE NAVIGATION
+        ===================================================== */
+
+        const sections =
+            document.querySelectorAll("section[id]");
+
+        const navigationItems =
+            document.querySelectorAll(".nav-links a");
+
+
+        window.addEventListener("scroll", () => {
+
+            let current = "";
+
+            sections.forEach(section => {
+
+                const sectionTop =
+                    section.offsetTop - 160;
+
+                if (window.scrollY >= sectionTop) {
+
+                    current = section.id;
+
+                }
+
+            });
+
+
+            navigationItems.forEach(link => {
+
+                link.classList.remove("active");
+
+                if (
+                    link.getAttribute("href") ===
+                    "#" + current
+                ) {
+
+                    link.classList.add("active");
+
+                }
+
+            });
+
+        });
+
+
+        /* =====================================================
+           YEAR
+        ===================================================== */
+
+        document.getElementById("year").textContent =
+            new 
+          Date().getFullYear();
+
+    </script>
+
+</body>
+</html>
+```
